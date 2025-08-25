@@ -39,13 +39,27 @@ in {
     (import ./zsh.nix)
   ];
 
+  # Small helper to switch Hyprland keyboard layouts reliably
+  programs.bash.enable = true;
+
   home.file = {
     ".local/share/omarchy/bin" = {
       source = ../../bin;
       recursive = true;
     };
   };
-  home.packages = packages.homePackages;
+  # Append our helper script to packages in one place to avoid redefinition
+  home.packages = let
+    hyprSwitch = pkgs.writeScriptBin "hypr-switch-kb-layout" ''
+      #!${pkgs.bash}/bin/bash
+      set -euo pipefail
+      dir="''${1:-next}"
+      kb="$(${config.wayland.windowManager.hyprland.package}/bin/hyprctl -j devices 2>/dev/null | ${pkgs.jq}/bin/jq -r '.keyboards[] | select(.name != "power-button") | .name' | head -n1)"
+      if [ -n "$kb" ]; then
+        ${config.wayland.windowManager.hyprland.package}/bin/hyprctl switchxkblayout "$kb" "$dir"
+      fi
+    '';
+  in packages.homePackages ++ [ hyprSwitch ];
 
   colorScheme = if (config.omarchy.theme == "generated_light" || config.omarchy.theme == "generated_dark")
     then generatedColorScheme

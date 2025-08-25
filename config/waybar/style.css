@@ -1,3 +1,10 @@
+/* Compact language pill */
+#language {
+  padding: 0 6px;
+  margin: 0 6px;
+  border-radius: 6px;
+  min-width: 0;
+}
 
 @import "./theme.css";
 * {

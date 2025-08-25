@@ -42,6 +42,7 @@ in {
           "clock"
         ];
         modules-right = [
+          "hyprland/language"
           # "custom/dropbox"
           "tray"
           "bluetooth"
@@ -51,6 +52,17 @@ in {
           "power-profiles-daemon"
           "battery"
         ];
+        "hyprland/language" = {
+          # Show a short two-letter code like "us" / "bg"
+          format = "{short}";
+          tooltip = false;
+          on-click = "hypr-switch-kb-layout next";
+          on-scroll-up = "hypr-switch-kb-layout next";
+          on-scroll-down = "hypr-switch-kb-layout prev";
+          # keyboard-name can be omitted to autodetect the default keyboard.
+          # To pin to a specific device, set it via: hyprctl devices | awk '/Keyboard/ {print name}'.
+          # keyboard-name = "at-translated-set-2-keyboard";
+        };
         "hyprland/workspaces" = {
           on-click = "activate";
           format = "{icon}";
