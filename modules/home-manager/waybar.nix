@@ -65,27 +65,27 @@ in {
         };
         "hyprland/workspaces" = {
           on-click = "activate";
-          format = "{icon}";
+          # Show workspace numbers instead of icons for AeroSpace-style indicator
+          format = "{name}";
+          # Simplified format-icons - just show the workspace number
           format-icons = {
-            default = "";
-            "1" = "1";
-            "2" = "2";
-            "3" = "3";
-            "4" = "4";
-            "5" = "5";
-            "6" = "6";
-            "7" = "7";
-            "8" = "8";
-            "9" = "9";
-            active = "󱓻";
+            default = "{name}";
+            active = "{name}";
           };
-          persistent-workspaces = {
-            "1" = [];
-            "2" = [];
-            "3" = [];
-            "4" = [];
-            "5" = [];
-          };
+          # Remove persistent-workspaces limit to allow unlimited workspaces
+          # persistent-workspaces = {
+          #   "1" = [];
+          #   "2" = [];
+          #   "3" = [];
+          #   "4" = [];
+          #   "5" = [];
+          # };
+          # Show workspaces from all monitors
+          all-outputs = true;
+          # Sort workspaces by monitor (AeroSpace-style)
+          sort-by-number = true;
+          # Don't show empty workspaces
+          show-special = false;
         };
         cpu = {
           interval = 5;
