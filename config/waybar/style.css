@@ -35,10 +35,19 @@
 #bluetooth,
 #wireplumber,
 #tray,
-#clock {
+#clock,
+#idle_inhibitor {
   background-color: transparent;
   min-width: 12px;
   margin-right: 13px;
+}
+
+#idle_inhibitor.activated {
+  color: #f9e2af;
+}
+
+#idle_inhibitor.deactivated {
+  color: #94e2d5;
 }
 
 tooltip {

@@ -47,6 +47,7 @@ in {
           "tray"
           "bluetooth"
           "network"
+          "idle_inhibitor"
           "wireplumber"
           "cpu"
           "power-profiles-daemon"
@@ -109,6 +110,15 @@ in {
           interval = 3;
           nospacing = 1;
           on-click = "ghostty -e nmcli";
+        };
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "ON";
+            deactivated = "OFF";
+          };
+          tooltip = true;
+          tooltip-format = "Idle inhibitor: {status}";
         };
         battery = {
           interval = 5;
