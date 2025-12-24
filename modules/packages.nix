@@ -42,7 +42,7 @@ let
     fastfetch
 
     # GUIs
-    chromium
+    # chromium
     obsidian
     vlc
     signal-desktop
